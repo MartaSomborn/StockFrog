@@ -1,0 +1,52 @@
+                          ┌─────────────────────────┐
+                          │     Public API / Data    │
+                          └──────────────┬───────────┘
+                                         │
+                                         ▼
+                          ┌─────────────────────────┐
+                          │  Python Fetch Script     │
+                          │  (Extract)               │
+                          └──────────────┬───────────┘
+                                         │ Upload raw files
+                                         ▼
+                    ┌──────────────────────────────────────────┐
+                    │     AWS S3 / Azure Blob Storage          │
+                    │                /raw                      │
+                    └──────────────────┬───────────────────────┘
+                                       │
+                                       ▼
+                      ┌─────────────────────────────────┐
+                      │       PySpark Processing         │
+                      │  Cleaning • Formatting • Joins   │
+                      └──────────────────┬────────────────┘
+                                         │ Save cleaned files
+                                         ▼
+                    ┌──────────────────────────────────────────┐
+                    │     AWS S3 / Azure Blob Storage          │
+                    │               /processed                 │
+                    └──────────────────┬───────────────────────┘
+                                       │
+                                       ▼
+                   ┌───────────────────────────────────────────┐
+                   │     Analytics Database                    │
+                   │  Postgres / Snowflake / Redshift          │
+                   └───────────────────┬───────────────────────┘
+                                       │ Query
+                                       ▼
+                   ┌───────────────────────────────────────────┐
+                   │               FastAPI Backend              │
+                   │   /stats • /timeseries • /table            │
+                   └───────────────────┬───────────────────────┘
+                                       │ JSON
+                                       ▼
+                    ┌──────────────────────────────────────────┐
+                    │   Streamlit Dashboard or React Frontend  │
+                    │   Charts • KPIs • Filters • Tables       │
+                    └──────────────────────────────────────────┘
+
+
+ AUTOMATION
+ ┌────────────────────────────────────────────────────────────┐
+ │   AWS Lambda / Azure Functions — runs ETL automatically     │
+ │   Airflow — schedules full pipeline (daily/hourly)         │
+ └────────────────────────────────────────────────────────────┘
