@@ -5,7 +5,7 @@ import os
 def fetch_stocks(tickers=["AAPL", "MSFT", "TSLA"]):
     os.makedirs("data", exist_ok=True)
     data = yf.download(tickers, period="1y", interval="1d")
-    data.to_csv("data/stocks_raw.csv")
+    data.to_csv("data/raw/stocks.csv")
     return data
 
 if __name__ == "__main__":
